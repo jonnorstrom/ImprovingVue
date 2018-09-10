@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      #app {
+        max-width: 1280px;
+        margin: auto;
+        text-align: center;
+      }
+
+      .lists {
+        display: flex;
+        justify-content: center;
+      }
+
+      .col {
+        min-width: 350px;
+      }
+
+      li {
+        padding: 15px;
+        margin: 5px;
+        border: 1px black solid;
+        list-style: none;
+        text-align: left;
+        position: relative;
+        min-width: 200px;
+      }
+
+      li button {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+      }
+
+      li span {
+        display: block;
+      }
+
+      form input {
+        font-size: 1.5em;
+      }
+
+      form {
+        display: flex;
+        justify-content: center;
+      }
+
+      form div {
+        margin: 0 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      form label {
+        display: block;
+        text-align: left;
+        font-size: 1em;
+        align-self: flex-start;
+      }
+
+      form input[type="checkbox"] {
+        -webkit-appearance:none;
+        width:30px;
+        height:30px;
+        background:white;
+        align-self: center;
+        margin: 0;
+      }
+
+      form input[type="checkbox"]:checked {
+        background-color: #abd;
+      }
+
+      form input {
+        border-radius:5px;
+        border:2px solid #555;
+      }
+
+      form button {
+        height: 50px;
+        align-self: flex-end;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ message }}</h1>
+      <h2> My favorite number is: {{favNum * 2}}</h2>
+      <hr>
+      <hr>
+      <form @submit.prevent="addItem()">
+        <div>
+          <label for="todo">What to do?</label>
+          <input type="text" v-model='todo.title' name='todo' required>
+        </div>
+        <div>
+          <label for="optional">Optional??</label>
+          <input type="checkbox" v-model="todo.optional" name="optional">
+        </div>
+        <br>
+        <button type="submit" name="button">Add item</button>
+      </form>
+      <div class="lists">
+        <div class="col">
+          <h3>Not done stuff : {{reqdTodos()}}</h3>
+          <ul>
+            <li v-for="(todo,i) in todos">
+              <span>{{ todo.title }}</span>
+              <span><strong><em>{{todo.optional ? 'optional' : "req'd"}}<strong></em></span>
+              <span>
+                <button @click="completeItem(i)">done</button>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Done stuff</h3>
+          <ul>
+            <li v-for="(todo,i) in doneTodos">
+              <span>{{ todo.title }}</span>
+              <span>
+                <button @click="incompleteItem(i)">Not done</button>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello World!',
+          favNum: 9,
+          todos: [
+            {'title': 'fix the car', 'optional': true},
+            {'title': 'get milk and eggs', 'optional': false},
+            {'title': 'walk the dog', 'optional': false}
+          ],
+          todo: {},
+          doneTodos: []
+        },
+        methods: {
+          completeItem(i) {
+            this.doneTodos.push(...this.todos.splice(i, 1))
+          },
+
+          addItem() {
+            this.todos.push(this.todo);
+            this.todo = {}
+          },
+
+          incompleteItem(i) {
+            this.todos.push(...this.doneTodos.splice(i, 1))
+          },
+
+          reqdTodos() {
+            return this.todos.filter((todo) => !todo.optional).length
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
