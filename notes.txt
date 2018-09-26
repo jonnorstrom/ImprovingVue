@@ -1,5 +1,5 @@
 Vue Class notes:
   1: small presentation. what is it, why we gonna learn it
-  1: get Vue here
+  2: get Vue here
       https://vuejs.org/v2/guide/installation.html
       https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js - script

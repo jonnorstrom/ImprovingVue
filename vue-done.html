@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
 
     button {
@@ -177,6 +178,9 @@
           </ul>
         </div>
       </div>
+      <ul>
+        <li v-for="user in users">{{ user.name }}</li>
+      </ul>
     </div>
     <script>
       new Vue({
@@ -190,8 +194,22 @@
             {'title': 'walk the dog', 'optional': false}
           ],
           todo: {},
-          doneTodos: []
+          doneTodos: [],
+          users: []
         },
+
+        beforeCreate() {
+          console.log(this.users)
+        },
+
+        created () {
+        var vm = this
+        axios.get('https://jsonplaceholder.typicode.com/users')
+          .then(function (response) {
+            vm.users = response.data
+          })
+        },
+
         methods: {
           completeItem(i) {
             this.doneTodos.push(...this.todos.splice(i, 1))
