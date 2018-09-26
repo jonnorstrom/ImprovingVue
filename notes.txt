@@ -3,5 +3,3 @@ Vue Class notes:
   1: get Vue here
       https://vuejs.org/v2/guide/installation.html
       https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js - script
-  2: build vue page up to where it currently is
-  3: then switch to vue framework and pick up where we left off, but make components
