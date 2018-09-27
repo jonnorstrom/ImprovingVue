@@ -1,15 +1,16 @@
 <template>
   <li>
     <span>{{ todo.title }}</span>
+    <span><strong><em>{{todo.optional ? 'optional' : "req'd"}}</em></strong></span>
     <span>
-      <button @click="incompleteItem(i)">Not done</button>
+      <button @click="markItem(index)">done</button>
     </span>
   </li>
 </template>
 
 <script>
 export default {
-  props: ['todo', 'incompleteItem', 'index']
+  props: ['todo', 'markItem', 'index']
 }
 </script>
 
