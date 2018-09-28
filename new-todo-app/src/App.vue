@@ -1,19 +1,58 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld></HelloWorld>
+    <hr>
+    <hr>
+    <Form
+      :todo="todo"
+      :addItem="addItem"
+    ></Form>
+    <Lists
+      :reqdTodos="reqdTodos"
+      :todos="todos"
+      :doneTodos="doneTodos"
+    ></Lists>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import HelloWorld from './components/HelloWorld.vue'
+  import Form from './components/Form.vue'
+  import Lists from './components/Lists.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  export default {
+    name: 'app',
+    components: {
+      HelloWorld,
+      Form,
+      Lists
+    },
+    data() {
+      return {
+        message: 'Hello World!',
+        favNum: 9,
+        todos: [
+          {'title': 'fix the car', 'optional': true},
+          {'title': 'get milk and eggs', 'optional': false},
+          {'title': 'walk the dog', 'optional': false}
+        ],
+        todo: {},
+        doneTodos: [],
+        users: []
+      }
+    },
+    methods: {
+
+      addItem() {
+        this.todos.push(this.todo);
+        this.todo = {}
+      },
+
+      reqdTodos() {
+        return this.todos.filter((todo) => !todo.optional).length
+      }
+    }
   }
-}
 </script>
 
 <style>
