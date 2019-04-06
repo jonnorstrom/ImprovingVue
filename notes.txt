@@ -1,6 +1,0 @@
-Vue Class notes:
-  1: small presentation. what is it, why we gonna learn it
-  2: get Vue here
-      https://vuejs.org/v2/guide/installation.html
-      https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js - script
-  3: AXIOS - https://unpkg.com/axios/dist/axios.min.js
