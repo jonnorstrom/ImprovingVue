@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>hello</h1>
+    <button @click="$store.commit('updateMessage', 'Hello from Home')">Update Message</button>
     <Form
       :addItem="addItem"
       :todo="todo"

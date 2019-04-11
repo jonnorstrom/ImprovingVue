@@ -5,11 +5,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  data() {
-    return {
-      message: "Hello World"
-    }
+  computed: {
+    ...mapState(['message'])
   }
 }
 </script>
